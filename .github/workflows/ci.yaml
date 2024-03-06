@@ -1,4 +1,4 @@
-name: React.js Frontend CI
+name: React.js CI
 
 on:
   push:
@@ -7,23 +7,28 @@ on:
     branches: [ "master" ]
 
 jobs:
-  frontend-test:
+  test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./quiz-app
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [14.x]
+
     steps:
     - uses: actions/checkout@v4
     
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
     - name: Install dependencies
       run: npm i
+      working-directory: ./quiz-app
 
     - name: Run lint
       run: npm run lint
@@ -31,25 +36,30 @@ jobs:
 
     - name: Install prettier
       run: npm install --save-dev --save-exact prettier
+      working-directory: ./quiz-app
 
     - name: Run prettier
       run: npm run prettier
+      working-directory: ./quiz-app 
 
     - name: Run tests
       run: npm test
+      working-directory: ./quiz-app
       env:
         CI: true 
 
     - name: Build
       run: npm run build
+      working-directory: ./quiz-app
 
   frontend-image:
-    needs: frontend-test
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     
     - name: Build and push backend Docker image
+      working-directory: ./quiz-app
       run: |
         docker build . -t ${{ secrets.DOCKER_USERNAME }}/frontend-js
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin 
