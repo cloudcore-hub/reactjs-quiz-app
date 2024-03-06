@@ -49,9 +49,8 @@ jobs:
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.sources=quiz-app
-
-
+          -Dsonar.sources=./quiz-app
+          
   backend-test:
     runs-on: ubuntu-latest
     defaults:
