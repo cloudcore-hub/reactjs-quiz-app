@@ -154,6 +154,9 @@ jobs:
       uses: snyk/actions/setup@master
       with:
         snyk-token: ${{ secrets.SNYK_TOKEN }}
+     
+    - name: Snyk Authenticate    
+      run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
     - name: Snyk Container monitor
       run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile    
