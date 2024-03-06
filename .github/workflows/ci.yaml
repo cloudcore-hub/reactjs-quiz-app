@@ -49,9 +49,50 @@ jobs:
         run: npm run build
         working-directory: ./quiz-app
 
+
+  backend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    strategy:
+      matrix:
+        node-version: [14.x]
+        architecture: [x64]
+    steps:
+      - name: Check-out git repository  
+        uses: actions/checkout@v3
+
+      - name: USE NODEJS ${{ matrix.node-version }} - ${{ matrix.architecture }}
+        uses: actions/setup-node@v3
+
+      - name: Install project dependencies 
+        run: npm i
+        working-directory: ./backend
+
+      - name: Run lint
+        run: npm run lint
+        working-directory: ./backend
+
+      - name: Install prettier
+        run: npm install --save-dev --save-exact prettier
+        working-directory: ./backend
+
+      - name: Run prettier
+        run: npm run prettier
+        working-directory: ./backend 
+
+      - name: Run tests
+        run: npm test
+        working-directory: ./backend
+        env:
+          CI: true 
+
+      - name: Build
+        run: npm run build
+        working-directory: ./backend
+
   frontend-image:
-    permissions:
-      contents: write 
     needs: frontend-test
     runs-on: ubuntu-latest
     steps:
@@ -72,3 +113,24 @@ jobs:
         output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH'
 
+
+  backend-image:
+    needs: backend-test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build and push backend Docker image
+      working-directory: ./backend
+      run: |
+        docker build . -t ${{ secrets.DOCKER_USERNAME }}/backend-api
+        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin 
+        docker push ${{ secrets.DOCKER_USERNAME }}/backend-api    
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'docker.io/${{ secrets.DOCKER_USERNAME }}/backend-api'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        severity: 'CRITICAL,HIGH'        
