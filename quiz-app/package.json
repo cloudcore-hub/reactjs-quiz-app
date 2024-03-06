@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "start": "node server.js",
     "prettier": "prettier --write .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests specified yet\" && exit 0"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
