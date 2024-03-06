@@ -50,6 +50,8 @@ jobs:
         working-directory: ./quiz-app
 
   frontend-image:
+    permissions:
+      contents: write 
     needs: frontend-test
     runs-on: ubuntu-latest
     steps:
