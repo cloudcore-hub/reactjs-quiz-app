@@ -102,6 +102,10 @@ jobs:
   frontend-image:
     needs: frontend-security
     runs-on: ubuntu-latest
+    permissions:
+      contents: read 
+      security-events: write 
+      actions: read
     steps:
     - uses: actions/checkout@v4
     
@@ -124,6 +128,10 @@ jobs:
   backend-image:
     needs: backend-security
     runs-on: ubuntu-latest
+    permissions:
+      contents: read 
+      security-events: write 
+      actions: read
     steps:
     - uses: actions/checkout@v4
     
@@ -142,5 +150,10 @@ jobs:
         output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH' 
         
+    - name: Install Snyk CLI
+      uses: snyk/actions/setup@master
+      with:
+        snyk-token: ${{ secrets.SNYK_TOKEN }}
+
     - name: Snyk Container monitor
       run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile    
