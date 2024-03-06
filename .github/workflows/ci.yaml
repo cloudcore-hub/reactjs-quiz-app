@@ -159,11 +159,13 @@ jobs:
       run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
     - name: Snyk Container monitor
-      # run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile -d    
+      run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile -d    
+      working-directory: ./backend
 
-      uses: snyk/actions/docker@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        image: ${{ secrets.DOCKER_USERNAME }}/backend-api
-        args: --file=Dockerfile -d      
+    # - name: Snyk Container monitor  
+    #   uses: snyk/actions/docker@master
+    #   env:
+    #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    #   with:
+    #     image: ${{ secrets.DOCKER_USERNAME }}/backend-api
+    #     args: --file=Dockerfile -d      
