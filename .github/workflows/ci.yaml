@@ -88,10 +88,6 @@ jobs:
         env:
           CI: true 
 
-      - name: Build
-        run: npm run build
-        working-directory: ./backend
-
   frontend-image:
     needs: frontend-test
     runs-on: ubuntu-latest
