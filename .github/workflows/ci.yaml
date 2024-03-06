@@ -140,4 +140,7 @@ jobs:
         image-ref: 'docker.io/${{ secrets.DOCKER_USERNAME }}/backend-api'
         format: 'sarif'
         output: 'trivy-results.sarif'
-        severity: 'CRITICAL,HIGH'        
+        severity: 'CRITICAL,HIGH' 
+        
+    - name: Snyk Container monitor
+      run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile    
