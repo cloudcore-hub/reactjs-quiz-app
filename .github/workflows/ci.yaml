@@ -81,6 +81,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --sarif-file-output=snyk.sarif
+          working-directory: ./quiz-app
 
 
   frontend-image:
