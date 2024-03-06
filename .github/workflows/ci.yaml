@@ -56,29 +56,35 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Install project dependencies 
-        run: npm i
         working-directory: ./backend
-
-      - name: Run lint
-        run: npm run lint
-        working-directory: ./backend
-
-      - name: Install prettier
-        run: npm install --save-dev --save-exact prettier
-        working-directory: ./backend
-
-      - name: Run prettier
-        run: npm run prettier
-        working-directory: ./backend 
-
-      - name: Run tests
-        run: npm test
-        working-directory: ./backend
+        run: |
+          npm i
+          npm run lint
+          npm install --save-dev --save-exact prettier
+          npm run prettier
+          npm test
         env:
           CI: true 
 
-  frontend-image:
+  frontend-security:
     needs: frontend-test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./quiz-app
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+
+
+  frontend-image:
+    needs: frontend-security
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
