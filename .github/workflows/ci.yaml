@@ -38,6 +38,19 @@ jobs:
         run: npm run build
         working-directory: ./quiz-app
 
+              # Setup sonar-scanner
+      - name: Setup SonarQube
+        uses: warchant/setup-sonar-scanner@v8
+
+      # Run sonar-scanner
+      - name: SonarQube Scan
+        run: sonar-scanner
+          -Dsonar.host.url=${{ secrets.SONAR_URL }}
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.sources=./quiz-app
+
 
   backend-test:
     runs-on: ubuntu-latest
