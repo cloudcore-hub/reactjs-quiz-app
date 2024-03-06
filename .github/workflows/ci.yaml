@@ -7,14 +7,15 @@ on:
     branches: [ "master" ]
 
 jobs:
-  test:
+  frontend-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./quiz-app
 
     strategy:
       matrix:
         node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v4
     
@@ -51,7 +52,7 @@ jobs:
       working-directory: ./quiz-app
 
   frontend-image:
-    needs: test
+    needs: frontend-test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
