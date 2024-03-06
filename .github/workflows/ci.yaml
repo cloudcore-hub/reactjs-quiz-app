@@ -24,24 +24,13 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Install project dependencies 
-        run: npm i
         working-directory: ./quiz-app
-
-      - name: Run lint
-        run: npm run lint
-        working-directory: ./quiz-app
-
-      - name: Install prettier
-        run: npm install --save-dev --save-exact prettier
-        working-directory: ./quiz-app
-
-      - name: Run prettier
-        run: npm run prettier
-        working-directory: ./quiz-app 
-
-      - name: Run tests
-        run: npm test
-        working-directory: ./quiz-app
+        run: |
+          npm i
+          npm run lint
+          npm install --save-dev --save-exact prettier
+          npm run prettier
+          npm test
         env:
           CI: true 
 
