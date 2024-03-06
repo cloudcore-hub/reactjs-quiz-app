@@ -124,6 +124,18 @@ jobs:
         output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH'
 
+    - name: Install Snyk CLI
+      uses: snyk/actions/setup@master
+      with:
+        snyk-token: ${{ secrets.SNYK_TOKEN }}
+       
+    - name: Snyk Authenticate    
+      run: snyk auth ${{ secrets.SNYK_TOKEN }}
+  
+    - name: Snyk Container monitor
+      run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/frontend-js --file=Dockerfile   
+      working-directory: ./quiz-app
+
 
   backend-image:
     needs: backend-security
@@ -159,13 +171,6 @@ jobs:
       run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
     - name: Snyk Container monitor
-      run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile -d    
+      run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile   
       working-directory: ./backend
 
-    # - name: Snyk Container monitor  
-    #   uses: snyk/actions/docker@master
-    #   env:
-    #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-    #   with:
-    #     image: ${{ secrets.DOCKER_USERNAME }}/backend-api
-    #     args: --file=Dockerfile -d      
