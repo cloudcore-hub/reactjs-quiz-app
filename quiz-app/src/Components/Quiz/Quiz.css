@@ -1,87 +1,87 @@
 .container {
-    width: 640px;
-    margin: auto;
-    margin-top: 150px;
-    background: white;
-    color: #262626;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    border: 1px solid #686868;
-    border-radius: 10px;
-    padding: 40px 50px;
+  width: 640px;
+  margin: auto;
+  margin-top: 150px;
+  background: white;
+  color: #262626;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #686868;
+  border-radius: 10px;
+  padding: 40px 50px;
 }
-.container hr{
-    height: 2px;
-    border: none;
-    background: #707070;
+.container hr {
+  height: 2px;
+  border: none;
+  background: #707070;
 }
-.container h2{
-    font-size: 27px;
-    font-weight: 500;
+.container h2 {
+  font-size: 27px;
+  font-weight: 500;
 }
-.container ul li{
-    display: flex;
-    align-items: center;
-    height: 70px;
-    padding-left: 15px;
-    border: 1px solid #686868;
-    border-radius: 8 px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    cursor: pointer;
+.container ul li {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  padding-left: 15px;
+  border: 1px solid #686868;
+  border-radius: 8 px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.container button{
-    margin: auto;
-    width: 250px;
-    height: 65px;
-    background: #553f9a;
-    color: #fff;
-    font-size: 25px;
-    font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer;
+.container button {
+  margin: auto;
+  width: 250px;
+  height: 65px;
+  background: #553f9a;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .container .index {
-    margin: auto;
-    font-size: 18px;
+  margin: auto;
+  font-size: 18px;
 }
-.container .correct{
-    background: #dffff2;
-    border-color: #00d397;
+.container .correct {
+  background: #dffff2;
+  border-color: #00d397;
 }
-.container .wrong{
-    background: #FFEBEB;
-    border-color: #FF4a4a;
+.container .wrong {
+  background: #ffebeb;
+  border-color: #ff4a4a;
 }
 .container form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Adjust as needed for spacing */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adjust as needed for spacing */
 }
 
 .container form div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .container form label {
-    font-size: 20px;
-    margin-bottom: 5px;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .container form input {
-    height: 40px;
-    border: 1px solid #686868;
-    border-radius: 8px;
-    padding: 0 10px;
-    font-size: 18px;
+  height: 40px;
+  border: 1px solid #686868;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 18px;
 }
 
 /* Enhance the look & feel of the form button if needed */
 .container form button {
-    height: 50px; /* Adjusted for form submission button */
-    font-size: 20px; /* Adjusted for better visibility */
+  height: 50px; /* Adjusted for form submission button */
+  font-size: 20px; /* Adjusted for better visibility */
 }

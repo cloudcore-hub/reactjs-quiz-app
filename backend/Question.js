@@ -1,5 +1,5 @@
 // Question.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const questionSchema = new mongoose.Schema({
   question: String,
@@ -10,6 +10,6 @@ const questionSchema = new mongoose.Schema({
   ans: Number,
 });
 
-const Question = mongoose.model('Question', questionSchema);
+const Question = mongoose.model("Question", questionSchema);
 
 module.exports = Question;

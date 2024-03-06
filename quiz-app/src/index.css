@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -6,5 +6,5 @@ body {
   height: 100vh;
   /* background-image: linear-gradient(#D8C7FF, #19006c); */
   background-image: url("/public/quiz.svg");
-  font-family: 'poppins';
+  font-family: "poppins";
 }
