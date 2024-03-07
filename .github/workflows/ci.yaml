@@ -129,7 +129,7 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         with:
-          entryPoint: quiz-app
+          entryPoint: quiz-app/Dockerfile
           args: 
             --severity-threshold=high
             --sarif-file-output=snyk.sarif
