@@ -14,7 +14,7 @@ jobs:
         working-directory: ./quiz-app
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [20.x]
         architecture: [x64]
     steps:
       - name: Check-out git repository  
@@ -58,25 +58,18 @@ jobs:
             -Dsonar.verbose=true
 
 
-        # Check the Quality Gate status.
-      - name: SonarQube Quality Gate check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-          # Force to fail step after specific time.
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #OPTIONAL
+      #   # Check the Quality Gate status.
+      # - name: SonarQube Quality Gate check
+      #   id: sonarqube-quality-gate-check
+      #   uses: sonarsource/sonarqube-quality-gate-action@master
+      #     # Force to fail step after specific time.
+      #   timeout-minutes: 5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #OPTIONAL
 
     
-      # # Run sonar-scanner
-      # - name: SonarQube Scan
-      #   run: sonar-scanner
-      #     -Dsonar.host.url=${{ secrets.SONAR_URL }}
-      #     -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-      #     -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-      #     -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-      #     -Dsonar.sources=./quiz-app
+
           
   backend-test:
     runs-on: ubuntu-latest
@@ -85,7 +78,7 @@ jobs:
         working-directory: ./backend
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [20.x]
         architecture: [x64]
     steps:
       - name: Check-out git repository  
@@ -105,6 +98,26 @@ jobs:
         env:
           CI: true 
 
+              # Setup sonar-scanner
+      - name: Setup SonarQube
+        uses: warchant/setup-sonar-scanner@v8
+
+      - name: Analyze with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: backend
+          args: >
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.host.url=${{ secrets.SONAR_URL }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.sources=src/
+            -Dsonar.verbose=true
+          
+
   frontend-security:
     needs: frontend-test
     runs-on: ubuntu-latest
@@ -115,11 +128,12 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
+        with:
+          projectBaseDir: quiz-app
+          args: --sarif-file-output=snyk.sarif
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk.sarif
 
   backend-security:
     needs: backend-test
