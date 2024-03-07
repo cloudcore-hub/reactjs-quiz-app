@@ -229,3 +229,15 @@ jobs:
       run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile   
       working-directory: ./backend
 
+  k8s-security:
+    needs: [backend-security, frontend-security]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Snyk to check Kubernetes manifest file for issues
+        uses: snyk/actions/iac@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          file: kubernetes-manifest/
+          args: --severity-threshold=high
