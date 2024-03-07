@@ -42,14 +42,26 @@ jobs:
       - name: Setup SonarQube
         uses: warchant/setup-sonar-scanner@v8
 
-      # Run sonar-scanner
-      - name: SonarQube Scan
-        run: sonar-scanner
-          -Dsonar.host.url=${{ secrets.SONAR_URL }}
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.sources=./quiz-app
+      - name: Analyze with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: quiz-app
+          args: >
+            -Dsonar.organization=$ {{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=$ {{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.host.url=${{ secrets.SONAR_URL }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.sources=src/
+            -Dsonar.verbose=true
+
+      # # Run sonar-scanner
+      # - name: SonarQube Scan
+      #   run: sonar-scanner
+      #     -Dsonar.host.url=${{ secrets.SONAR_URL }}
+      #     -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      #     -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+      #     -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+      #     -Dsonar.sources=./quiz-app
           
   backend-test:
     runs-on: ubuntu-latest
