@@ -18,10 +18,10 @@ jobs:
         architecture: [x64]
     steps:
       - name: Check-out git repository  
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: USE NODEJS ${{ matrix.node-version }} - ${{ matrix.architecture }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
 
       - name: Install project dependencies 
         working-directory: ./quiz-app
@@ -82,10 +82,10 @@ jobs:
         architecture: [x64]
     steps:
       - name: Check-out git repository  
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: USE NODEJS ${{ matrix.node-version }} - ${{ matrix.architecture }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
 
       - name: Install project dependencies 
         working-directory: ./backend
@@ -128,11 +128,6 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
-        with:
-          entryPoint: quiz-app/Dockerfile
-          args: 
-            --severity-threshold=high
-            --sarif-file-output=snyk.sarif
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -162,9 +157,18 @@ jobs:
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+         
+      - name: Install Snyk CLI
+        uses: snyk/actions/setup@master
         with:
-          args: --sarif-file-output=snyk.sarif
-           
+          snyk-token: ${{ secrets.SNYK_TOKEN }}
+          
+      - name: Snyk Authenticate    
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+      - name: Snyk Code Test
+        run: snyk code test --all-projects
+        continue-on-error: true
 
   frontend-image:
     needs: frontend-security
@@ -202,6 +206,15 @@ jobs:
     - name: Snyk Container monitor
       run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/frontend-js --file=Dockerfile   
       working-directory: ./quiz-app
+
+    - name: Run Snyk to check for vulnerabilities in the Docker image
+      uses: snyk/actions/docker@master
+      with:
+        image: ${{ secrets.DOCKER_USERNAME }}/frontend-js
+        args: --file=quiz-app/Dockerfile --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
 
 
   backend-image:
@@ -250,9 +263,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
 
-
-
-  k8s-security:
+  k8s-manifest-scan:
     needs: [backend-security, frontend-security]
     runs-on: ubuntu-latest
     steps:
