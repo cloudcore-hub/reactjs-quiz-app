@@ -1,6 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors"); // For handling cross-origin requests
+// const helmet = require('helmet'); // Import helmet
+// const csrf = require('csurf'); // Import csurf
+// const cookieParser = require('cookie-parser'); // Import cookie-parser for CSRF token handling
+
 const app = express();
 const port = 3000;
 require("dotenv").config();
@@ -8,6 +12,12 @@ require("dotenv").config();
 // Middleware
 app.use(cors()); // Use this to allow cross-origin requests
 app.use(express.json()); // For parsing application/json
+// app.use(helmet()); // Use helmet to set secure HTTP headers
+// app.use(cookieParser()); // Use cookie-parser middleware
+
+// // CSRF protection
+// const csrfProtection = csrf({ cookie: true });
+// app.use(csrfProtection);
 
 // MongoDB connection string
 const dbUri = process.env.MONGO_URI;
@@ -44,6 +54,9 @@ app.get("/api/questions", async (req, res) => {
 });
 
 // POST a new question
+// // Modified route to include csrfProtection as middleware
+// app.post("/api/questions", csrfProtection, async (req, res) => { // Protect this route with CSRF - Line modified
+
 app.post("/api/questions", async (req, res) => {
   const question = new Question({
     question: req.body.question,
