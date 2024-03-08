@@ -241,6 +241,17 @@ jobs:
       run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/backend-api --file=Dockerfile   
       working-directory: ./backend
 
+    - name: Run Snyk to check for vulnerabilities in the Docker image
+      uses: snyk/actions/docker@master
+      with:
+        image: ${{ secrets.DOCKER_USERNAME }}/backend-api
+        args: --file=backend/Dockerfile --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+
+
+
   k8s-security:
     needs: [backend-security, frontend-security]
     runs-on: ubuntu-latest
