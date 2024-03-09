@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: quiz
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: ogochukwuozotta/backend-api:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-uri
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: quiz
+spec:
+  selector:
+    app: backend
+  ports:
+  - port: 3000
+    protocol: TCP
+  type: ClusterIP
+  
