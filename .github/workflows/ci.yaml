@@ -121,7 +121,9 @@ jobs:
       - name: Install Snyk CLI
         uses: snyk/actions/setup@master
         with:
-          snyk-token: ${{ secrets.SNYK_TOKEN }}
+          version: latest
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  
          
       - name: Snyk Authenticate    
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
@@ -147,7 +149,9 @@ jobs:
       - name: Install Snyk CLI
         uses: snyk/actions/setup@master
         with:
-          snyk-token: ${{ secrets.SNYK_TOKEN }}
+          version: latest
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           
       - name: Snyk Authenticate    
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
@@ -255,7 +259,7 @@ jobs:
     needs: [backend-security, frontend-security]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Run Snyk to check Kubernetes manifest file for issues
         uses: snyk/actions/iac@master
         env:
