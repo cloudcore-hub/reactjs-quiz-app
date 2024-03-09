@@ -25,7 +25,7 @@ spec:
         image: ogochukwuozotta/frontend-js:latest
         env:
         - name: VITE_REACT_APP_API_URL
-          value: "http://backend.cloudcorehub.com/api/questions"
+          value: "http://quizapp.cloudcorehub.com/api/questions"
         ports:
         - containerPort: 8080
 ---
