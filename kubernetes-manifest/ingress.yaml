@@ -17,13 +17,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: backend
+                name: backend-service
                 port:   
                   number: 3000
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: frontend
+                name: frontend-service
                 port: 
                   number: 8080
