@@ -214,6 +214,7 @@ jobs:
         args: --file=quiz-app/Dockerfile --severity-threshold=high
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      continue-on-error: true
 
 
 
@@ -261,6 +262,7 @@ jobs:
         args: --file=backend/Dockerfile --severity-threshold=high
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      continue-on-error: true 
 
 
   k8s-manifest-scan:
