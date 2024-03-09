@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-service
+  name: frontend
   namespace: quiz
   labels:
     app: frontend
