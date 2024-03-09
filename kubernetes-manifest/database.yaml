@@ -17,17 +17,44 @@ spec:
     spec:
       containers:
       - name: mongo
-        image: mongo:latest
+        image: mongo:4.4.6
         ports:
         - containerPort: 27017
         volumeMounts:
-        - name: mongo-persistent-storage
+        - name: mongo-volume
           mountPath: /data/db
       volumes:
-      - name: mongo-persistent-storage
+      - name: mongo-volume
         persistentVolumeClaim:
           claimName: mongo-pvc
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-pv
+  namespace: quiz
+spec:
+  capacity: 
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/db
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+  namespace: quiz
+spec: 
+  accessModes:  
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 1Gi
+---    
 apiVersion: v1
 kind: Service
 metadata:
