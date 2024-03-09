@@ -56,21 +56,7 @@ jobs:
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.sources=src/
             -Dsonar.verbose=true
-
-
-      #   # Check the Quality Gate status.
-      # - name: SonarQube Quality Gate check
-      #   id: sonarqube-quality-gate-check
-      #   uses: sonarsource/sonarqube-quality-gate-action@master
-      #     # Force to fail step after specific time.
-      #   timeout-minutes: 5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #     SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #OPTIONAL
-
-    
-
-          
+        
   backend-test:
     runs-on: ubuntu-latest
     defaults:
