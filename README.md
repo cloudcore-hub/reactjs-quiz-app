@@ -58,7 +58,7 @@ Before starting this project, ensure you have the following prerequisites:
 - Basic familiarity with Kubernetes, Docker, CICD pipelines, Github Actions, Terraform, and DevOps principles.
 
 ### Step 1: SSH Exchange between local computer and Github account
-`cd` to home dir and create .ssh/ folder if it doesn't exist 
+**cd** to home dir and create **.ssh** folder if it doesn't exist 
 
 ```
 cd ~/.ssh
@@ -67,7 +67,7 @@ ssh-keygen
 ![Screenshot 2024-02-28 at 9 22 06 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/6fdcda62-9178-45c2-a1d6-bc7cf778cd78)
 
 
-Give the key a name `key`. Then list `ls` the content of .ssh/ folder.
+Give the key a name **key**. Then list **ls** the content of .ssh/ folder.
 
 Copy the content of the public key
 ```
@@ -75,7 +75,7 @@ cat key.pub
 ```
 
 Go to the Settings of your Github account from profile section.
-Go to Access Section on the left `SSH and GPG Keys` and `New SSH key`. Give a title and paste the content of key.pub
+Go to Access Section on the left **SSH and GPG Keys** and **New SSH key**. Give a title and paste the content of key.pub
 
 ![Screenshot 2024-02-28 at 9 27 39 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/9cfbd7f0-27f9-4180-b5e1-a18e2eb8386f)
 
@@ -84,7 +84,7 @@ Back to the computer terminal and run the command
 ```
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/key"
 ```
-Create a project folder in your `Desktop` or anywhere you'd prefer
+Create a project folder in your **Desktop** or anywhere you'd prefer
 
 ```
 mkdir ~/Desktop/project && cd ~/Desktop/project
@@ -113,12 +113,12 @@ git config core.sshCommand "ssh -i ~/.ssh/key -F /dev/null"
 1. **Create a New Repository on GitHub:**
    - Go to GitHub and sign in.
    - Go to your profile and open Your repositories
-   - Click the `New` icon in the top-right corner to create new repository.
+   - Click the **New** icon in the top-right corner to create new repository.
 
 
 ![Screenshot 2024-02-28 at 9 38 08 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/815b0603-14ab-42fd-9756-3d8484909740)
 
-   - Name your repository `iac`, set it to public or private, and click "Create repository."
+   - Name your repository **iac**, set it to public or private, and click "Create repository."
 
 ![Screenshot 2024-02-28 at 9 40 08 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/790b34f0-8a92-47dd-992c-b47359884f48)
 
@@ -133,7 +133,7 @@ git config core.sshCommand "ssh -i ~/.ssh/key -F /dev/null"
      ```
      git remote set-url origin <YOUR_NEW_REPOSITORY_URL>
      ```
-     Replace `YOUR_NEW_REPOSITORY_URL` with the URL of your new GitHub repository, like `https://github.com/yourusername/yourrepositoryname.git`.
+     Replace **YOUR_NEW_REPOSITORY_URL** with the URL of your new GitHub repository, like **https://github.com/yourusername/yourrepositoryname.git**.
 
 ![Screenshot 2024-02-28 at 9 43 51 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/0e2959bb-d704-4c2e-a84d-4363d0364711)
 
@@ -151,13 +151,13 @@ git config core.sshCommand "ssh -i ~/.ssh/key -F /dev/null"
      ```
      git push -u origin master
      ```
-     If your main branch is named differently (e.g., `main`), replace `master` with the correct branch name.
+     If your main branch is named differently (e.g., **main**), replace **master** with the correct branch name.
 
 4. **Verify the Push:**
    - Refresh the GitHub page of your repository to see if the code has been pushed successfully.
 
 5. **Repeat for the second repo:**  
-   - You can name the second repo `reactjs` for simplicity
+   - You can name the second repo **reactjs** for simplicity
 
 When done, run the following command in your terminal
 
@@ -193,13 +193,13 @@ Click on Create user
 
 ![Screenshot 2024-02-28 at 9 50 05 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/d9dc1a65-de40-4d74-a311-089638b5cc58)
 
-Now, Select your created user then click on `Security credentials` and generate access key by clicking on Create access key.
+Now, Select your created user then click on **Security credentials** and generate access key by clicking on Create access key.
 
 ![Screenshot 2024-02-28 at 9 50 16 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/28d6572c-1d0f-4877-a8af-f3ccfbfaaba5)
 
 
 
-Select the `Command Line Interface (CLI)` then select the checkmark for the confirmation and click on Next.
+Select the **Command Line Interface (CLI)** then select the checkmark for the confirmation and click on Next.
 
 ![Screenshot 2024-02-28 at 9 50 28 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/cab6e1b5-bc3a-40cf-b09d-d11db190bd81)
 
@@ -228,12 +228,12 @@ Here, you will see that you got the credentials and also you can download the CS
 
 4. **Add a New Secret:**
    - Click on the "New repository secret" button.
-   - Enter the name of your secret in the "Name" field. Use `AWS_ACCESS_KEY_ID`.
+   - Enter the name of your secret in the "Name" field. Use **AWS_ACCESS_KEY_ID**.
    - Enter the value of your secret in the "Value" field. 
 
 5. **Save the Secret:**
    - Click the "Add secret" button to save your new secret.
-   - The secret is now stored securely and can be accessed in GitHub Actions workflows using the `${{ secrets.AWS_ACCESS_KEY_ID }}` syntax, where `AWS_ACCESS_KEY_ID` is the name you gave your secret. Do same for the `AWS_SECRET_ACCESS_KEY`, add the Secret and save
+   - The secret is now stored securely and can be accessed in GitHub Actions workflows using the **${{ secrets.AWS_ACCESS_KEY_ID }}** syntax, where **AWS_ACCESS_KEY_ID** is the name you gave your secret. Do same for the **AWS_SECRET_ACCESS_KEY**, add the Secret and save
 
 ![Screenshot 2024-02-28 at 9 55 10 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/17093658-686c-457e-8a1d-b4004b7e9986)
 
@@ -241,7 +241,7 @@ Here, you will see that you got the credentials and also you can download the CS
 6. **Repeat 1-5 for app code repository:**
 
 #### Create S3 Bucket for Terraform State files 
-Create S3 bucket for the terraform state file. Add the bucket name in the iac_code repo secret. Name: `BUCKET_TF`, Value: `<your-bucket-name>`
+Create S3 bucket for the terraform state file. Add the bucket name in the iac_code repo secret. Name: **BUCKET_TF**, Value: **<your-bucket-name>**
 
 ![Screenshot 2024-02-28 at 9 58 13 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/47797825-5ca9-4564-841b-b8a30c77ddac)
 
@@ -281,7 +281,9 @@ brew install awscli
 
 Run the below command, and add your keys from Step 2
 
-`aws configure`
+```
+aws configure
+```
 
 ![Screenshot 2024-02-28 at 10 01 14 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/fe83607f-5325-4903-a1ed-ded5a85848f2)
 
@@ -293,17 +295,17 @@ cd ~/Desktop/project/iac_code
 Open the folder in Visual Studio Code or any Text Editor 
 Navigate to the terraform folder
 
-Do some modifications to the `terraform.tf` file such as changing the bucket name (make sure you have created the bucket manually on AWS console). 
+Do some modifications to the **terraform.tf** file such as changing the bucket name (make sure you have created the bucket manually on AWS console). 
 
 <img width="667" alt="Screenshot 2024-03-13 at 1 57 56 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/9f581c1c-7fbe-4359-9f33-1dc198810383">
 
 
-Now, in the `variables.tf` you can change some of the variable `region`, `vpc-name`, `ami_id`, `instance_type`, but you must replace the `instance_keypair` with the Pem File name as you have for your Pem file. Provide the Pem file name that is already created on AWS.
+Now, in the **variables.tf** you can change some of the variable **region**, **vpc-name**, **ami_id**, **instance_type**, but you must replace the **instance_keypair** with the Pem File name as you have for your Pem file. Provide the Pem file name that is already created on AWS.
 
 <img width="773" alt="Screenshot 2024-03-13 at 1 59 18 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/41747c40-8efe-4e02-aacb-28ce1415a8ec">
 
 
-Review `.github/workflows/terraform.yml`
+Review **.github/workflows/terraform.yml**
 
 ```
 git commit -am "updated terraform files"
@@ -414,7 +416,7 @@ Sign in into your Dockerhub Account
 
 #### Create Docker Secret
 Go to Dockerhub page, click on your profile and select My Account.
-Then go to Security and click on New Access Token. Give it a name in the Access Token Description and Generate. Copy the token and add to `app` repo secrets, name it `DOCKER_PASSWORD` and paste the docker generated token. Also add another secret name it `DOCKER_USERNAME` and paste your dockerhub account username
+Then go to Security and click on New Access Token. Give it a name in the Access Token Description and Generate. Copy the token and add to **app** repo secrets, name it **DOCKER_PASSWORD** and paste the docker generated token. Also add another secret name it **DOCKER_USERNAME** and paste your dockerhub account username
 
 
 ![Screenshot 2024-02-28 at 10 58 48 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/e7087161-6959-4939-9524-4543bdc24b12)
@@ -494,9 +496,9 @@ secret: https://sonarcloud.io
 #### 4. Generate a Snyk Token
 - Navigate to the account settings or your profile settings.
 - Look for the API tokens section.
-- Click on "Generate Token" or "Create New Token."
+- Click on **Generate Token** or **Create New Token.**
 - Name your token and, if given the option, set the scopes or permissions for the token.
-- Click "Generate" or "Create."
+- Click **Generate** or **Create.**
 
 #### 5. Secure Your Token
 - Copy the generated token and keep it secure. Do not share your token in public places.
@@ -604,7 +606,7 @@ echo $ARGO_PWD
 
 
 
-Enter the username `admin` and password in argoCD and click on SIGN IN.
+Enter the username **admin** and password in argoCD and click on SIGN IN.
 
 ![Screenshot 2024-02-28 at 3 15 05 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/71740bd1-da78-44d5-b0b4-9bcb3bb78235)
 
@@ -646,7 +648,7 @@ helm install grafana grafana/grafana -n monitoring --create-namespace
 ![Screenshot 2024-02-28 at 3 21 33 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/9461a2ab-df77-4399-b7f4-3180064dab91)
 
 
-Get Grafana `admin` user password using:
+Get Grafana **admin** user password using:
 ```
 kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
@@ -701,7 +703,7 @@ You can also validate from AWS LB console.
 
 
 Now, access your Prometheus Dashboard
-Paste the <Prometheus-LB-DNS>:9090 in your browser and you will see something like this
+Paste the **Prometheus-LB-DNS:9090** in your browser and you will see something like this
 
 ![Screenshot 2024-02-28 at 4 56 39 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/14857129-604e-45a7-9340-587223ada7bb)
 
@@ -719,7 +721,7 @@ Copy the ALB DNS of Grafana and paste it into your browser.
 ![Screenshot 2024-02-28 at 4 58 44 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/8e8f2fba-99d5-435e-8eb0-fd192134bc24)
 
 
-Get your 'admin' user password by running:
+Get your **admin** user password by running:
 ```
 kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
@@ -739,7 +741,7 @@ Now, click on Data Source
 Select Prometheus
 
 
-In the Connection, paste your <Prometheus-LB-DNS>:9090
+In the Connection, paste your **Prometheus-LB-DNS:9090**
 
 If the URL is correct, then you will see a green notification/
 Click on Save & test.
@@ -915,8 +917,6 @@ For Namespaces
 For Nodes 
 
 ![Screenshot 2024-03-10 at 3 32 51 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/1f646754-cc07-4175-b5d0-da663fd1249a)
-
-
 
 
 
