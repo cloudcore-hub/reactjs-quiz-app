@@ -872,6 +872,11 @@ Share the quizapp.cloudcorehub.com
 
 Note: I have created a subdomain quizapp.cloudcorehub.com
 
+<img width="1030" alt="Screenshot 2024-03-13 at 3 12 09 PM" src="https://github.com/cloudcore-hub/reactjs-quiz-app/assets/88560609/31d1a7b4-3270-4660-b369-5a8aa38c4355">
+
+Logged into the simple quiz application 
+
+<img width="917" alt="Screenshot 2024-03-13 at 3 12 35 PM" src="https://github.com/cloudcore-hub/reactjs-quiz-app/assets/88560609/be005a73-d401-4182-a357-14fee0347026">
 
 
 More Grafana dashboard IDs to try 
