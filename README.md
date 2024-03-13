@@ -104,9 +104,11 @@ git config core.sshCommand "ssh -i ~/.ssh/key -F /dev/null"
    - Go to GitHub and sign in.
    - Go to your profile and open Your repositories
    - Click the `New` icon in the top-right corner to create new repository.
-   - Name your repository `iac`, set it to public or private, and click "Create repository."
+
 
 ![Screenshot 2024-02-28 at 9 38 08 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/815b0603-14ab-42fd-9756-3d8484909740)
+
+   - Name your repository `iac`, set it to public or private, and click "Create repository."
 
 ![Screenshot 2024-02-28 at 9 40 08 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/790b34f0-8a92-47dd-992c-b47359884f48)
 
@@ -145,7 +147,8 @@ git config core.sshCommand "ssh -i ~/.ssh/key -F /dev/null"
    - Refresh the GitHub page of your repository to see if the code has been pushed successfully.
 
 5. **Repeat for the second repo:**  
-You can name the second repo `reactjs` for simplicity
+   - You can name the second repo `reactjs` for simplicity
+
 When done, run the following command in your terminal
 
 ```
@@ -238,7 +241,7 @@ Create key pair for SSHing into the jumphost in .pem format and download it in y
 
 ![Screenshot 2024-02-28 at 9 59 26 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/03b85d83-6c8d-4047-9fc0-12a16fe48410)
 
-### Step 3: Install Terraform & AWS CLI .
+### Step 3: Install Terraform & AWS CLI
 Install & Configure Terraform and AWS CLI on your local machine 
 
 #### Terraform Installation Script for WSL
@@ -308,7 +311,7 @@ Now, connect to your Jumphost-Server by clicking on Connect.
 Copy the ssh command and paste it on your local machine.
 Be sure you are in the same folder where your key pair is saved or provide the path to the key. For first time use incase of file permission error, run 
 ```
-Chmod 400 key.pem
+chmod 400 key.pem
 ```
 
 ![Screenshot 2024-02-28 at 11 58 56 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/677ae172-64bc-4a1d-b1a5-10624a012092)
