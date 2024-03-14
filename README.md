@@ -297,12 +297,12 @@ Navigate to the terraform folder
 
 Do some modifications to the **terraform.tf** file such as changing the bucket name (make sure you have created the bucket manually on AWS console). 
 
-<img width="667" alt="Screenshot 2024-03-13 at 1 57 56 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/9f581c1c-7fbe-4359-9f33-1dc198810383">
+![Screenshot 2024-03-13 at 1 57 56 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/9f581c1c-7fbe-4359-9f33-1dc198810383)
 
 
 Now, in the **variables.tf** you can change some of the variable **region**, **vpc-name**, **ami_id**, **instance_type**, but you must replace the **instance_keypair** with the Pem File name as you have for your Pem file. Provide the Pem file name that is already created on AWS.
 
-<img width="773" alt="Screenshot 2024-03-13 at 1 59 18 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/41747c40-8efe-4e02-aacb-28ce1415a8ec">
+![Screenshot 2024-03-13 at 1 59 18 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/41747c40-8efe-4e02-aacb-28ce1415a8ec)
 
 
 Review **.github/workflows/terraform.yml**
@@ -503,7 +503,7 @@ secret: https://sonarcloud.io
 #### 5. Secure Your Token
 - Copy the generated token and keep it secure. Do not share your token in public places.
 
-<img width="1500" alt="Screenshot 2024-03-13 at 2 00 50 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/b4835533-5bef-4262-bf6c-e1c79fcf7941">
+![Screenshot 2024-03-13 at 2 00 50 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/b4835533-5bef-4262-bf6c-e1c79fcf7941)
 
 You can now use this token to authenticate and integrate Snyk with your projects or CI/CD pipelines.
 
@@ -521,7 +521,7 @@ Open the folder in Visual Studio Code
 Update the kubernetes-manifest/ingress.yaml file with your DNS
 Review .github/workflows/quizapp.yml file
 
-<img width="994" alt="Screenshot 2024-03-13 at 2 02 14 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/b33b5756-ad82-437c-969a-5f178be1318e">
+![Screenshot 2024-03-13 at 2 02 14 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/b33b5756-ad82-437c-969a-5f178be1318e)
 
 ```
 git commit -am "updated manifest files"
@@ -673,7 +673,7 @@ kubectl edit svc prometheus-kube-prometheus-prometheus -n monitoring
 
 Modification in the 48th line from ClusterIP to LoadBalancer
 
-<img width="544" alt="Screenshot 2024-03-13 at 2 05 49 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/942b9888-021c-4c30-bf47-d4eb388a92d2">
+![Screenshot 2024-03-13 at 2 05 49 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/942b9888-021c-4c30-bf47-d4eb388a92d2)
 
 
 Edit the Grafana service
@@ -747,7 +747,7 @@ If the URL is correct, then you will see a green notification/
 Click on Save & test.
 
 
-<img width="937" alt="Screenshot 2024-03-13 at 2 08 01 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/8d8988d5-b6dd-4f48-bf0c-055a796337c5">
+![Screenshot 2024-03-13 at 2 08 01 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/8d8988d5-b6dd-4f48-bf0c-055a796337c5)
 
 Now, we will create a dashboard to visualize our Kubernetes Cluster Logs.
 Click on Dashboard.
@@ -809,20 +809,20 @@ If your Connection Status is Successful it means repository connected successful
 Now, we will create our application which will deploy the frontend, backend. database and ingress
 Click on CREATE APPLICATION.
 
-<img width="1017" alt="Screenshot 2024-03-13 at 2 10 48 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/d6740e57-607c-4e93-9a3c-7fbf35ac21a0">
+![Screenshot 2024-03-13 at 2 10 48 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/d6740e57-607c-4e93-9a3c-7fbf35ac21a0)
 
 
 
 Provide the details as it is provided in the below snippet and scroll down.
 
-<img width="973" alt="Screenshot 2024-03-13 at 2 09 55 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/aa61aea9-c835-4947-a21b-fce354730512">
+![Screenshot 2024-03-13 at 2 09 55 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/aa61aea9-c835-4947-a21b-fce354730512)
 
 
 Select the same repository that you configured in the earlier step.
 In the Path, provide the location where your Manifest files are presented and provide other things as shown in the below screenshot.
 
 
-<img width="986" alt="Screenshot 2024-03-13 at 2 13 00 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/3b1cceff-752c-4402-a23a-5ac024f93ba2">
+![Screenshot 2024-03-13 at 2 13 00 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/3b1cceff-752c-4402-a23a-5ac024f93ba2)
 
 
 Click on CREATE.
@@ -837,7 +837,7 @@ ArgoCD will deploy all the application in the kubernetes-manifest folder
 
 Deployment is synced and healthy 
 
-<img width="1043" alt="Screenshot 2024-03-13 at 2 16 57 PM" src="https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/31853ad3-bcec-4089-864d-abf3623d67de">
+![Screenshot 2024-03-13 at 2 16 57 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/31853ad3-bcec-4089-864d-abf3623d67de)
 
 
 Once your Ingress application is deployed. It will create an Application Load Balancer
@@ -884,11 +884,11 @@ Share the quizapp.cloudcorehub.com
 
 Note: I have created a subdomain quizapp.cloudcorehub.com
 
-<img width="1030" alt="Screenshot 2024-03-13 at 3 12 09 PM" src="https://github.com/cloudcore-hub/reactjs-quiz-app/assets/88560609/31d1a7b4-3270-4660-b369-5a8aa38c4355">
+![Screenshot 2024-03-13 at 3 12 09 PM](https://github.com/cloudcore-hub/reactjs-quiz-app/assets/88560609/31d1a7b4-3270-4660-b369-5a8aa38c4355)
 
 Logged into the simple quiz application 
 
-<img width="917" alt="Screenshot 2024-03-13 at 3 12 35 PM" src="https://github.com/cloudcore-hub/reactjs-quiz-app/assets/88560609/be005a73-d401-4182-a357-14fee0347026">
+![Screenshot 2024-03-13 at 3 12 35 PM](https://github.com/cloudcore-hub/reactjs-quiz-app/assets/88560609/be005a73-d401-4182-a357-14fee0347026)
 
 
 More Grafana dashboard IDs to try 
